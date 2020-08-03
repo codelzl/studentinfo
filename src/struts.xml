@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.multipart.maxSize" value="20971520"/>
+	
+	<package name="studentInfo" namespace="/" extends="struts-default">
+		<action name="user" class="com.java1234.action.UserAction">
+			<result name="error">/login.jsp</result>
+			<result name="logOut" type="redirect">/login.jsp</result>
+			<result name="success">/main.jsp</result>
+		</action>
+		
+		<action name="dataDicType" class="com.java1234.action.DataDicTypeAction">
+			<result name="success">/main.jsp</result>
+			<result name="typeSave" type="redirectAction">dataDicType!list</result>
+		</action>
+		
+		<action name="dataDic" class="com.java1234.action.DataDicAction">
+			<result name="success">/main.jsp</result>
+			<result name="save" type="redirectAction">dataDic!list</result>
+		</action>
+		
+		<action name="grade" class="com.java1234.action.GradeAction">
+			<result name="success">/main.jsp</result>
+			<result name="save" type="redirectAction">grade!list</result>
+		</action>
+		
+		<action name="class" class="com.java1234.action.ClassAction">
+			<result name="success">/main.jsp</result>
+			<result name="save" type="redirectAction">class!list</result>
+		</action>
+		
+		<action name="student" class="com.java1234.action.StudentAction">
+			<result name="success">/main.jsp</result>
+			<result name="save" type="redirectAction">student!list</result>
+			
+			<interceptor-ref name="fileUpload">
+	              <param name="allowedTypes">image/bmp,image/x-png,image/gif,image/jpg,image/jpeg</param>
+	              <param name="maximumSize">2000000</param>
+	            </interceptor-ref>
+		
+	        <interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+     
+</struts>
